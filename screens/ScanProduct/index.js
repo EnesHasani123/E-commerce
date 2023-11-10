@@ -12,6 +12,8 @@ import {
 import { useState } from "react";
 import { LoadFonts } from "../../constants/theme";
 
+import { Camera, useCameraDevices } from "react-native-vision-camera";
+
 const index = ({ navigation }) => {
   const [selectOption, setSelectedOption] = useState(
     constants.scan_product_option.camera
