@@ -189,7 +189,9 @@ const AuthMain = ({ navigation }) => {
                 fontFamily: "Poppins-SemiBold",
                 ...FONTS.h3,
               }}
-              onPress={() => navigation.navigate("Home")}
+              onPress={() => {
+                navigation.navigate("Home");
+              }}
             />
           </View>
         </Shadow>

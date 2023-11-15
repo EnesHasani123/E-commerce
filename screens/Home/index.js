@@ -1,9 +1,8 @@
-import React from "react";
 import { View } from "react-native";
 
 import { TextButton } from "../../components";
 
-const Home = ({ navigation }) => {
+const index = ({ navigation }) => {
   return (
     <View
       style={{
@@ -14,10 +13,12 @@ const Home = ({ navigation }) => {
     >
       <TextButton
         label="Scan"
-        onPress={() => navigation.navigate("ScanProduct")}
+        onPress={() => {
+          navigation.navigate("ScanProduct");
+        }}
       />
     </View>
   );
 };
 
-export default Home;
+export default index;

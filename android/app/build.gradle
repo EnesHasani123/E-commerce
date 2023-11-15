@@ -81,8 +81,9 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.rnecommerce"
+    namespace 'com.anonymous.RNEcommerce'
     defaultConfig {
+        applicationId 'com.anonymous.RNEcommerce'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

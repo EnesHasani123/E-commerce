@@ -1,25 +1,27 @@
-import React from "react";
-import { View, Text, Image, TouchableOpacity, Linking } from "react-native";
+import { View, Text, Image, TouchableOpacity } from "react-native";
 
 import { IconButton, TextButton } from "../../components";
 import {
-  SIZES,
   COLORS,
+  SIZES,
   FONTS,
   icons,
   constants,
   images,
 } from "../../constants";
+import { useState } from "react";
+import { LoadFonts } from "../../constants/theme";
 
-const ScanProduct = ({ navigation }) => {
-  //State
-  const [selectedOption, setSelectedOption] = React.useState(
+import { Camera, useCameraDevices } from "react-native-vision-camera";
+
+const index = ({ navigation }) => {
+  const [selectOption, setSelectedOption] = useState(
     constants.scan_product_option.camera
   );
 
-  //Render
+  LoadFonts();
 
-  function renderHeader() {
+  const renderHeader = () => {
     return (
       <View
         style={{
@@ -34,32 +36,26 @@ const ScanProduct = ({ navigation }) => {
       >
         {/* Close */}
         <IconButton icon={icons.close} onPress={() => navigation.goBack()} />
+
         {/* Title */}
         <Text
           style={{
             flex: 1,
             marginLeft: SIZES.radius,
+            fontFamily: "Poppins-Bold",
             ...FONTS.h2,
           }}
         >
-          {selectedOption == constants.scan_product_option.camera
+          {selectOption == constants.scan_product_option.camera
             ? "Scan Camera"
             : "Scan QR Code"}
         </Text>
-        {/* Add Options */}
-        <IconButton
-          icon={icons.flash}
-          iconStyle={{
-            width: 25,
-            height: 25,
-          }}
-        />
 
+        {/* Add. options */}
+        <IconButton icon={icons.flash} iconStyle={{ width: 25, height: 25 }} />
         <IconButton
-          icon={icons.question_mark}
-          containerStyle={{
-            marginLeft: SIZES.base,
-          }}
+          icons={icons.question_mark}
+          containerStyle={{ marginLeft: SIZES.base }}
           iconStyle={{
             width: 25,
             height: 25,
@@ -67,9 +63,9 @@ const ScanProduct = ({ navigation }) => {
         />
       </View>
     );
-  }
+  };
 
-  function renderFooter() {
+  const renderFooter = () => {
     return (
       <View
         style={{
@@ -87,20 +83,19 @@ const ScanProduct = ({ navigation }) => {
             height: 55,
             borderRadius: SIZES.radius,
             backgroundColor:
-              selectedOption == constants.scan_product_option.qr
+              selectOption == constants.scan_product_option.qr
                 ? COLORS.primary
-                : COLORS.lightGrey,
+                : COLORS.light,
           }}
           labelStyle={{
+            fontFamily: "Poppins-SemiBold",
             ...FONTS.h3,
             color:
-              selectedOption == constants.scan_product_option.qr
+              selectOption == constants.scan_product_option.qr
                 ? COLORS.secondary
                 : COLORS.primary,
           }}
-          onPress={() => {
-            setSelectedOption(constants.scan_product_option.qr);
-          }}
+          onPress={() => setSelectedOption(constants.scan_product_option.qr)}
         />
 
         <TextButton
@@ -108,34 +103,31 @@ const ScanProduct = ({ navigation }) => {
           contentContainerStyle={{
             flex: 1,
             height: 55,
-            marginLeft: SIZES.radius,
             borderRadius: SIZES.radius,
+            marginLeft: SIZES.radius,
             backgroundColor:
-              selectedOption == constants.scan_product_option.camera
+              selectOption == constants.scan_product_option.camera
                 ? COLORS.primary
-                : COLORS.lightGrey,
+                : COLORS.light,
           }}
           labelStyle={{
+            fontFamily: "Poppins-SemiBold",
             ...FONTS.h3,
             color:
-              selectedOption == constants.scan_product_option.camera
+              selectOption == constants.scan_product_option.camera
                 ? COLORS.secondary
                 : COLORS.primary,
           }}
-          onPress={() => {
-            setSelectedOption(constants.scan_product_option.camera);
-          }}
+          onPress={() =>
+            setSelectedOption(constants.scan_product_option.camera)
+          }
         />
       </View>
     );
-  }
+  };
 
   return (
-    <View
-      style={{
-        flex: 1,
-      }}
-    >
+    <View style={{ flex: 1 }}>
       {/* Header */}
       {renderHeader()}
 
@@ -145,4 +137,4 @@ const ScanProduct = ({ navigation }) => {
   );
 };
 
-export default ScanProduct;
+export default index;

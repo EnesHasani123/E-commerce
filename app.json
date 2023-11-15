@@ -11,7 +11,9 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true,
       "infoPlist": {
@@ -23,11 +25,22 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "permissions": ["android.permission.CAMERA"]
+      "permissions": [
+        "android.permission.CAMERA"
+      ],
+      "package": "com.anonymous.RNEcommerce"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
+    "plugins": [
+      [
+        "react-native-vision-camera",
+        {
+          "cameraPermissionText": "$(PRODUCT_NAME) needs access to your Camera."
+        }
+      ]
+    ],
     "extra": {
       "eas": {
         "projectId": "70be3bdc-7c64-4c3f-95d3-7aeb8c18a80f"
